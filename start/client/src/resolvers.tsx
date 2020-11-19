@@ -2,6 +2,7 @@ import { gql, ApolloCache, Resolvers } from "@apollo/client";
 import * as GetCartItemTypes from "./pages/__generated__/GetCartItems";
 import * as LaunchTileTypes from "./pages/__generated__/LaunchTile";
 import { GET_CART_ITEMS } from "./pages/cart";
+import { cartItemsVar} from './cache'
 
 export const schema = gql`
   extend type Launch {
@@ -61,14 +62,15 @@ export const resolvers: AppResolvers = {
         query: GET_CART_ITEMS,
       });
       if (queryResult) {
+        console.log(queryResult)
         const { cartItems } = queryResult;
         const data = {
           cartItems: cartItems.includes(id)
             ? cartItems.filter((i) => i !== id)
             : [...cartItems, id],
         };
-        cache.writeQuery({ query: GET_CART_ITEMS, data });
-        return data.cartItems;
+        cartItemsVar(data.cartItems)
+        return cartItemsVar();
       }
       return [];
     }

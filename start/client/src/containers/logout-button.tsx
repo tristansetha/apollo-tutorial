@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'react-emotion';
 import { useApolloClient } from '@apollo/client';
-
+import { isLoggedInVar } from '../cache';
 import { menuItemClassName } from '../components/menu-item';
 import { ReactComponent as ExitIcon } from '../assets/icons/exit.svg';
 
@@ -9,10 +9,11 @@ export default function LogoutButton() {
   const client = useApolloClient();
   return (
     <StyledButton
-      // onClick={() => {
-      //   client.writeData({ data: { isLoggedIn: false } });
-      //   localStorage.clear();
-      // }}
+      onClick={() => {
+        // client.writeData({ data: { isLoggedIn: false } });
+        isLoggedInVar(false);
+        localStorage.clear();
+      }}
     >
       <ExitIcon />
       Logout

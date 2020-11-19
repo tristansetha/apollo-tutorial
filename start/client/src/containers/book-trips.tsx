@@ -1,6 +1,6 @@
 import React from 'react'; // preserve-line
 import { gql, useMutation } from '@apollo/client'; // preserve-line
-
+// import { cartItemsVar } from '../cache';
 import Button from '../components/button'; // preserve-line
 import { GET_LAUNCH } from './cart-item'; // preserve-line
 import * as GetCartItemsTypes from '../pages/__generated__/GetCartItems';
@@ -36,9 +36,10 @@ const BookTrips: React.FC<BookTripsProps> = ({ cartItems }) => {
         variables: { launchId },
       })),
 
-      // update(cache) {
-      //   cache.writeData({ data: { cartItems: [] } });
-      // }
+      update() {
+        // cartItemsVar([]);
+        // cache.writeQuery({ data: { cartItems: [] } });
+      }
     }
   );
 

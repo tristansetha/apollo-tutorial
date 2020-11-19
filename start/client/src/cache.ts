@@ -7,6 +7,7 @@ export const cache: InMemoryCache = new InMemoryCache({
         isLoggedIn() {
           return isLoggedInVar();
         },
+
         cartItems() {
           return cartItemsVar();
         },
@@ -31,6 +32,10 @@ export const cache: InMemoryCache = new InMemoryCache({
   }
 });
 
-export const isLoggedInVar =
-  cache.makeVar<boolean>(!!localStorage.getItem('token'));
+// Query.isLoggedIn(), Query.cartItems(), Query.launches
+
+export const isLoggedInVar = cache.makeVar<boolean>(!!localStorage.getItem('token'));
 export const cartItemsVar = cache.makeVar<string[]>([]);
+
+// https://www.apollographql.com/docs/tutorial/local-state/
+// https://www.apollographql.com/docs/react/local-state/managing-state-with-field-policies/#storing-local-state-in-reactive-variables

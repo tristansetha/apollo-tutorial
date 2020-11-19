@@ -19,6 +19,8 @@ const Cart: React.FC<CartProps> = () => {
     GetCartItemsTypes.GetCartItems
   >(GET_CART_ITEMS);
 
+  if(data) console.log(data)
+
   if (loading) return <Loading />;
   if (error) return <p>ERROR: {error.message}</p>;
 

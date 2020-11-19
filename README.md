@@ -1,4 +1,4 @@
-# Apollo tutorial (unfinished **last chapter)
+# Apollo tutorial
 
 This is the fullstack app for the [Apollo tutorial](http://apollographql.com/docs/tutorial/introduction.html). 🚀
 
@@ -24,4 +24,4 @@ and
 cd final/client && npm i && npm start
 ```
 
-*client: index, logout-button, and book-trips needs an alternative to cache.writeData
+
