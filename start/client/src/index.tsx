@@ -5,16 +5,14 @@ import {
   useQuery,
   gql,
   HttpLink,
-  InMemoryCache
+  InMemoryCache,
 } from "@apollo/client";
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import Pages from "./pages";
-import Login from './pages/login';
+import Login from "./pages/login";
 import injectStyles from "./styles";
-import { cache, 
-  isLoggedInVar, cartItemsVar 
-} from "./cache";
+import { cache, isLoggedInVar, cartItemsVar } from "./cache";
 
 // Initialize ApolloClient
 
@@ -25,32 +23,19 @@ import { resolvers, typeDefs } from "./resolvers";
 const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   cache,
   link: new HttpLink({
-    uri: 'http://localhost:4000/graphql',
+    uri: "http://localhost:4000/graphql",
     headers: {
-      authorization: localStorage.getItem('token'),
+      authorization: localStorage.getItem("token"),
     },
   }),
   typeDefs,
   resolvers,
 });
 
-// useEffect(() => {
-  isLoggedInVar(!!localStorage.getItem('token'));
-  cartItemsVar([])
+isLoggedInVar(!!localStorage.getItem("token"));
+cartItemsVar([]);
 
-  console.log(isLoggedInVar())
-// }, [])
-
-
-
-// cache.writeData({
-//   data: {
-//     isLoggedIn: !!localStorage.getItem('token'),
-//     cartItems: [],
-//   },
-// });
-
-
+console.log(isLoggedInVar());
 
 const IS_LOGGED_IN = gql`
   query IsUserLoggedIn {
@@ -71,9 +56,8 @@ function IsLoggedIn() {
 
 injectStyles();
 ReactDOM.render(
-  
   <ApolloProvider client={client}>
     <IsLoggedIn />
   </ApolloProvider>,
-  document.getElementById('root'),
+  document.getElementById("root")
 );
